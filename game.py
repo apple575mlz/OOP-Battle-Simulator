@@ -1,4 +1,5 @@
 from goblin import Goblin
+from hero import Hero
 
 
 ARENA_NAME = "The Gates of Hades"
@@ -11,9 +12,10 @@ def main():
     print("The gates are opening...")
 
     goblin = Goblin("Goblinstein")
+    hero = Hero("Sir Smiting")
 
     print(f"{goblin.name} enters the arena with {goblin.health} health.")
-    print("But no hero has answered the call... yet.")
+    print(f"And {hero.name} has returned his call!")
 
 
 if __name__ == "__main__":
