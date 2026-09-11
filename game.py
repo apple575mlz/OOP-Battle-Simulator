@@ -14,9 +14,13 @@ def main():
     print("The gates are opening...")
 
     goblin = Goblin("Goblinstein")
+    goblin2 = Goblin("Goblinberg")
     hero = Hero("Sir Smiting")
 
-    print(f"{goblin.name} enters the arena with {goblin.health} health.")
+    totalenemies = [goblin, goblin2]
+
+    for enemy in totalenemies:
+        print(f"{enemy.name} enters the arena with {enemy.health} health.")
     print(f"And {hero.name} has returned his call!")
 
     while Gamerun == True:
