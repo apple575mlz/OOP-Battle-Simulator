@@ -25,6 +25,13 @@ def heroattacking(enemies, mainchar):
     print(f"You have chosen to swing at {whichattack.name}...")
     time.sleep(0.5)
     attkdmg = mainchar.attack()
+
+    critrng = random.randint(1, 20)
+    if critrng <= mainchar.critchance:
+        attkdmg *= 2.5
+        print("You have landed a critical hit!")
+        time.sleep(1)
+
     whichattack.take_damage(attkdmg)
     print(f"You dealt {attkdmg} to {whichattack.name}!")
     time.sleep(0.5)
@@ -66,6 +73,13 @@ def handleenemyattack(enemies, mainchar):
             print(f"{enemy.name} has tripped and fell, dealing 0 damage.")
         else:
             attkdmg = enemy.attack()
+
+            enemycritrng = random.randint(1, 20)
+            if enemycritrng <= enemy.critrate:
+                attkdmg *= 2.5
+                print(f"{enemy.name} Landed a critical hit!")
+                time.sleep(1)
+
             mainchar.take_damage(attkdmg)
             print(f"{enemy.name} has attacked you for {attkdmg} damage!")
             time.sleep(0.5)

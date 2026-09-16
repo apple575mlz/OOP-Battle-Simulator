@@ -12,6 +12,7 @@ class Goblin:
         
         self.triprate = 5
         self.spawnrate = 10
+        self.critrate = 1
 
     def attack(self):
         return random.randint(self.attack_power//3, self.attack_power)
