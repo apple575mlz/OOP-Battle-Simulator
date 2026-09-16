@@ -1,22 +1,58 @@
 import random
+from levelrequirements import *
 
 class Hero:
-    """The hero blueprint will be implemented later in the project."""
-
     def __init__(self, name):
-            self.name = name
-            self.health = 100
-            self.attack_power = 15
-    
+        self.name = name
+        self.health = 300
+        self.attack_power = 30
+        self.level = 1
+        self.xpneeded = 200
+        self.overflowxp = 0
+        self.currentmoney = 1000000000000
+
+        self.backpackitems = []
+
+    def testattack(self):
+        return 100000
+        
     def attack(self):
-        """Return a random amount of damage."""
-        return random.randint(1, self.attack_power)
+        return random.randint(self.attack_power//3, self.attack_power)
     
     def take_damage(self, damage):
-        """Reduce health without allowing it to fall below zero."""
         self.health = max(0, self.health - damage)
-        print(f"{self.name} takes {damage} damage. Health: {self.health}")
     
     def is_alive(self):
-        """Return True while the goblin has health remaining."""
         return self.health > 0
+
+    def doilevel(self, xpgained):
+        tempxpneeded = self.xpneeded - xpgained
+        if tempxpneeded <= 0:
+            return True
+        else:
+            return False
+
+    def addnonlevel(self, xpadd):
+        self.xpneeded -= xpadd
+
+    def levelup(self, xp):
+        self.level += 1
+        self.addnonlevel(xp)
+
+        if self.xpneeded < 0:
+            self.overflowxp = (self.xpneeded - (self.xpneeded * 2))
+
+        self.xpneeded = int(returnlevels()[str(self.level)])
+        self.addnonlevel(self.overflowxp)
+        self.overflowxp = 0
+
+    def handlexp(self, xp):
+        if self.doilevel(xp):
+            self.levelup(xp)
+            print(f"You leveled up! You are now level {self.level}!")
+            print(f"Xp needed to get to the next level: {self.xpneeded}")
+        else:
+            self.addnonlevel(xp)
+
+    def additem(self, item):
+        self.backpackitems.append(item)
