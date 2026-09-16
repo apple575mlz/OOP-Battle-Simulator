@@ -1,4 +1,4 @@
-from weapons import *
+from items import *
 
 sword1 = CopperDullBlade()
 sword2 = IronShortSword()

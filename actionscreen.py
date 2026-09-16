@@ -24,7 +24,7 @@ def heroattacking(enemies, mainchar):
     print()
     print(f"You have chosen to swing at {whichattack.name}...")
     time.sleep(0.5)
-    attkdmg = mainchar.testattack()
+    attkdmg = mainchar.attack()
     whichattack.take_damage(attkdmg)
     print(f"You dealt {attkdmg} to {whichattack.name}!")
     time.sleep(0.5)

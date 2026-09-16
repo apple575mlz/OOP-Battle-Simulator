@@ -9,7 +9,7 @@ class Hero:
         self.level = 1
         self.xpneeded = 200
         self.overflowxp = 0
-        self.currentmoney = 1000000000000
+        self.currentmoney = 0
 
         self.backpackitems = []
 
