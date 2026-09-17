@@ -25,6 +25,9 @@ def weaponshophandler(selection, mainchar):
     if selection == 1:
         copperdullbladebuyscreen(mainchar)
 
+    elif selection == 2:
+        ironshortswordbuyscreen(mainchar)
+
     elif selection == 0:
         doshopselection(shop(), mainchar)
 
@@ -41,7 +44,7 @@ def weaponshop():
 def copperdullbladebuyscreen(mainchar):
     if mainchar.currentmoney - sword1.cost >= 0 and sword1.owned == False:
         mainchar.currentmoney -= sword1.cost
-        mainchar.additem(sword1)
+        mainchar.additem("Weapon", sword1)
         sword1.owned = True
         print()
         print(f"Purchase successful! New balance: {mainchar.currentmoney} coins.")
@@ -54,5 +57,24 @@ def copperdullbladebuyscreen(mainchar):
         weaponshophandler(weaponshop(), mainchar)
 
     elif sword1.owned == True:
+        print("You already own that item!")
+        weaponshophandler(weaponshop(), mainchar)
+
+def ironshortswordbuyscreen(mainchar):
+    if mainchar.currentmoney - sword2.cost >= 0 and sword2.owned == False:
+        mainchar.currentmoney -= sword2.cost
+        mainchar.additem("Weapon", sword2)
+        sword2.owned = True
+        print()
+        print(f"Purchase successful! New balance: {mainchar.currentmoney} coins.")
+        input("Press anything to continue...")
+        weaponshophandler(weaponshop(), mainchar)
+
+    elif mainchar.currentmoney - sword2.cost < 0:
+        print("Sorry! You do not have enough money for that!")
+        input("Press anything to continue...")
+        weaponshophandler(weaponshop(), mainchar)
+
+    elif sword2.owned == True:
         print("You already own that item!")
         weaponshophandler(weaponshop(), mainchar)

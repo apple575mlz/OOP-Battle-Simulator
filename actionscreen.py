@@ -2,6 +2,7 @@ from stage import *
 from enemydefiner import *
 from attackhandler import *
 from actionscreenenemyhandler import *
+from backpackhandler import *
 import random
 import time
 
@@ -21,24 +22,16 @@ def inspecting(enemies):
         print(f"{enemy.name}, {enemy.health} health.")
     input("Press anything to continue...")
 
-def openbackpack(mainchar):
-    print()
-    print("----- Backpack -----")
-    if not mainchar.backpackitems == []:
-        for thingy in mainchar.backpackitems:
-            print(thingy.name)
-    else:
-        print("There's nothing in here!")
-    input("Press anything to continue...")
-
 def checkingself(mainchar):
     print()
     print("---- Stats -----")
-    print(f"You have {mainchar.attack_power} attack.")
+    print(f"You have {mainchar.attack_power + mainchar.equippedweapon.attack} attack.")
+    print(f"Current equipped weapon: {mainchar.equippedweapon.name}")
     print(f"You have {mainchar.health} health.")
     print(f"You have {mainchar.currentmoney} coins.")
     print(f"Current Level: {mainchar.level}")
     print(f"XP needed to level up: {mainchar.xpneeded}")
+    print(f"{mainchar.backpackitems}")
     input("Press anything to continue...")
 
 def handleResponseToScreen(selection):
@@ -54,7 +47,7 @@ def handleResponseToScreen(selection):
         checkingself(returnhero())
 
     elif selection == 4:
-        openbackpack(returnhero())
+        backpackselection(openbackpack(returnhero()), returnhero())
 
 def checkalive(enemies):
     counter = 1

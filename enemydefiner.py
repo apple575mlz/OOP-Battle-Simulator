@@ -1,13 +1,17 @@
 from goblin import Goblin
 from hero import Hero
+from items import *
 import random
+
+hands = Hands()
+testWeapon = IronShortSword()
 
 #----------Opener----------------
 goblin = Goblin("Goblinstein", 75, 1000)
 goblin2 = Goblin("Goblinberg", 75, 1000)
 openingenemies = [goblin, goblin2]
 
-hero = Hero("Sir Smiting")
+hero = Hero("Sir Smiting", hands)
 def returnhero():
     return hero
 

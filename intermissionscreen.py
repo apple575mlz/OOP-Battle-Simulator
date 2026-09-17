@@ -3,8 +3,8 @@ from shopscreen import *
 from actionscreen import *
 from stage import *
 from openingsequence import *
+from backpackhandler import *
 import time
-movingon = False
 
 def selectionscreen():
     print()
@@ -26,15 +26,15 @@ def dointerselection(select):
         checkingself(returnhero())
 
     elif select == 4:
-        openbackpack(returnhero())
+        backpackselection(openbackpack(returnhero()), returnhero())
 
     elif select == 0:
         movingon = True
         increasestage()
         runnewenemies(returnenemies(returnstage()))
 
-
 def handleintermission():
+    movingon = False
     print("Congrats! You have cleared all of the enemies on this stage.")
     time.sleep(1)
 

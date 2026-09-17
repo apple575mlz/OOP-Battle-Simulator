@@ -2,23 +2,25 @@ import random
 from levelrequirements import *
 
 class Hero:
-    def __init__(self, name):
+    def __init__(self, name, hands):
         self.name = name
         self.health = 300
-        self.attack_power = 30
+        self.attack_power = 75
         self.level = 1
         self.xpneeded = 200
         self.overflowxp = 0
-        self.currentmoney = 0
+        self.currentmoney = 100000
         self.critchance = 2
 
-        self.backpackitems = []
+        self.backpackitems = {"Weapons": [], "Heals": [], "Potions": [], "Armor": []}
+
+        self.equippedweapon = hands
 
     def testattack(self):
         return 100000
         
     def attack(self):
-        return random.randint(self.attack_power//3, self.attack_power)
+        return random.randint((self.attack_power + self.equippedweapon.attack)//2, self.attack_power + self.equippedweapon.attack)
     
     def take_damage(self, damage):
         self.health = max(0, self.health - damage)
@@ -55,5 +57,11 @@ class Hero:
         else:
             self.addnonlevel(xp)
 
-    def additem(self, item):
-        self.backpackitems.append(item)
+    def additem(self, type, item):
+        if type == "Weapon":
+            self.backpackitems["Weapons"].append(item)
+
+    def equipweapon(self, item):
+        self.equippedweapon.equipped = False
+        self.equippedweapon = item
+        self.equippedweapon.equipped = True
